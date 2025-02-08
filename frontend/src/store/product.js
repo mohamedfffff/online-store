@@ -9,7 +9,7 @@ export const useProductStore = create((set) => ({
         if(!newProduct.name || !newProduct.price || !newProduct.image) {
             return { success: false, message: 'All fields are required' };
         }
-        const res = await fetch('http://localhost:3000/products', {
+        const res = await fetch('https://online-store-deployment.vercel.app/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,13 +22,13 @@ export const useProductStore = create((set) => ({
     },
     // fetching the product data from the backend
     fetchProducts: async () => {
-        const res = await fetch('http://localhost:3000/products');
+        const res = await fetch('https://online-store-deployment.vercel.app/products');
         const data = await res.json();
         set({ products: data.data });
     },
     // deleting the product from the database
     deleteProduct: async (productId) =>{
-        const res = await fetch(`http://localhost:3000/products/${productId}`, {
+        const res = await fetch(`https://online-store-deployment.vercel.app/${productId}`, {
             method: 'DELETE',
         });
         const data = await res.json();
@@ -44,7 +44,7 @@ export const useProductStore = create((set) => ({
         if(!updatedProduct.name || !updatedProduct.price || !updatedProduct.image) {
             return { success: false, message: 'All fields are required' };
         }
-        const res = await fetch(`http://localhost:3000/products/${updatedProduct._id}`, {
+        const res = await fetch(`https://online-store-deployment.vercel.app/${updatedProduct._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
